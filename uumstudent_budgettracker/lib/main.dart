@@ -31,7 +31,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+TextEditingController expenseController = TextEditingController();
+TextEditingController budgetController = TextEditingController();
 
+double budget=0.0;
+double expense=0.0;
+double result=0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 182, 46, 5),
         title: Text('UUM Student Budget Tracker',
-        style: TextStyle(fontWeight: FontWeight(10))),
+        style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         ),
       
@@ -54,11 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
             
             SizedBox(height: 30),
 
-            Text('Remaining Balance: RM ',
+            Text('Remaining Balance: RM $result',
             style: TextStyle(fontSize: 25),
             ),
 
-            Text('Total Spent              : RM ',
+            Text('Total Spent              : RM $expense',
             style: TextStyle(fontSize: 25),
             ),
 
@@ -69,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 SizedBox(width:(300),  
                 child: TextField(
+                  controller: budgetController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -82,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   width: (300),
                   child: TextField(
+                    controller: expenseController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -97,8 +104,11 @@ class _MyHomePageState extends State<MyHomePage> {
           
               ElevatedButton(
                 onPressed: (){
+                  double currentBudget = double.tryParse(budgetController.text)?? 0.0;
+                  double currentExpense = double.tryParse(expenseController.text)?? 0.0;
                   setState(() {
-                   // result = allowance - expense;
+                    expense = expense + currentExpense;
+                    result = currentBudget- expense;
                   });
                 },
                 child: const Text("Calculate"),
