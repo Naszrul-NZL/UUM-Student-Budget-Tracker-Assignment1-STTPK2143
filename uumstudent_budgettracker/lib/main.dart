@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 void main() {
@@ -53,11 +55,14 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/logo_uum.png',height: 200),
-            const Text('Track Your Weekly Budget',
-            style: TextStyle(fontSize: 50),),
+            Image.asset('assets/images/logo_uum.png',height: 125),
             
-            SizedBox(height: 30),
+            SizedBox(height: 20),
+
+            const Text('Track Your Weekly Budget',
+            style: TextStyle(fontSize: 30),),
+            
+            SizedBox(height: 60),
 
             Text('Remaining Balance: RM $result',
             style: TextStyle(fontSize: 25),
@@ -67,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(fontSize: 25),
             ),
 
-            SizedBox(height: 40),
+            SizedBox(height: 70),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -93,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       ),
-                    hintText: ('Enter Your Expensed'),
+                    hintText: ('Enter Your Expenses'),
                     ),
                   ),
                 ),
@@ -114,6 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text("Calculate"),
               ),
+              SizedBox(height: 150),
             ],
           ),    
          ),
